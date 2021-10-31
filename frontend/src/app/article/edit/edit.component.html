@@ -1,0 +1,61 @@
+<div class="container">
+  
+    <div class="d-flex justify-content-between">
+      <h4>Edit Article</h4>
+      <a href="#" routerLink="/article/index" class="btn btn-primaryt">Back</a>
+    </div>
+
+    <hr>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="title">topic:</label>
+              <input
+                formControlName="topic"
+                [(ngModel)]="article.topic"
+                id="topic"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.topic.touched && f.topic.invalid" class="alert alert-danger">
+                  <div *ngIf="f.topic.errors.required">*topic is required.</div>
+                  <div *ngIf="f.topic.errors.pattern">*The topic must only contain letters.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="description">description:</label>
+              <input
+                formControlName="description"
+                [(ngModel)]="article.description"
+                id="description"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
+                  <div *ngIf="f.description.errors.required">*description is required.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="categorie">categorie:</label>
+              <input
+                [(ngModel)]="article.categorie"
+                formControlName="categorie"
+                id="categorie"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.categorie.touched && f.description.invalid" class="alert alert-danger">
+                  <div *ngIf="f.categorie.errors.required">*categorie is required.</div>
+              </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+    </form>
+</div>

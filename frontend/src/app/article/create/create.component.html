@@ -1,0 +1,59 @@
+<div>
+
+  <div class="d-flex justify-content-between">
+    <h4>create article</h4>
+    <a href="#" routerLink="/article/index" class="btn btn-primaryt">Back</a>
+  </div>
+
+  <hr/>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="title">topic:</label>
+              <input
+                formControlName="topic"
+                id="topic"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.topic.touched && f.topic.invalid" class="alert alert-danger">
+                  <div *ngIf="f.topic.errors.required">*topic is required.</div>
+                  <div *ngIf="f.topic.errors.pattern">*The topic must only contain letters.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="title">description:</label>
+              <input
+                formControlName="description"
+                id="description"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.description.touched && f.topic.invalid" class="alert alert-danger">
+                  <div *ngIf="f.description.errors.required">*description is required.</div>
+                  <div *ngIf="f.description.errors.email">*The description must be a valid email address.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="categorie">categorie:</label>
+              <input
+                formControlName="categorie"
+                id="categorie"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.categorie.touched && f.categorie.invalid" class="alert alert-danger">
+                  <div *ngIf="f.categorie.errors.required">*categorie is required.</div>
+              </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>
+

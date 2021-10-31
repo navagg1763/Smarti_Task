@@ -1,0 +1,53 @@
+<section>
+
+    <div class="d-flex justify-content-between">
+      <h4>Articles List</h4>
+<div>
+  
+
+  <mat-form-field>
+  <label class="form-control mdb-autocomplete">search</label>
+    <input matInput  aria-label="State" [matAutocomplete]="auto" [formControl]="searchArticlesCtrl" class="form-control mdb-autocomplete" >
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+      <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let article of filteredArticles"  [value]="article.id">
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <br>
+
+<ng-container *ngIf="errorMsg; else elseTemplate">
+  {{errorMsg}}
+</ng-container>
+<ng-template #elseTemplate>
+<br/>
+  <h5>Selected Value: {{searchArticlesCtrl.value}}</h5>
+</ng-template>
+
+</div>
+      <a routerLink="/article/create" class="btn btn-success" length="10px">Create New Article</a>
+    </div>
+
+    <br>
+    
+    <table class="table ">
+      <tr>
+        <th>topic</th>
+        <th>description</th>
+        <th>categorie</th>
+      </tr>
+      <tr *ngFor="let article of filteredArticles">
+        <td>{{ article.topic }}</td>
+        <td>{{ article.description }}</td>
+        <td>{{ article.categorie }}</td>
+        <td>
+          <a  [routerLink]="['/article/', 'edit',article.id  ]" class="btn btn-primary">Edit</a>
+          <button type="button" (click)="deleteArticle(article.id)" class="btn btn-danger" routerLink="/article/index/">Delete</button>
+        </td>
+      </tr>
+    </table>
+ </section>
+
