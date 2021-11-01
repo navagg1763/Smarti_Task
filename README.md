@@ -10,8 +10,9 @@ php artisan migrate:install
 php artisan migrate:refresh
 
 run commands: 
-run command: npm install 
 run command: php artisan serve 
+run frontend:
+run command: npm install 
 run command: cd frontend
 run command: ng serve --open
 
